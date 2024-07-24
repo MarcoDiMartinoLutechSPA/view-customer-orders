@@ -1,0 +1,63 @@
+<mvc:View controllerName="sap.btp.viewcustomerorders.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar">
+
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <fb:FilterBar id="filterBar" search="onSearch"  persistencyKey="myPersKey" useToolbar="false">
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem groupName="customerID" name="customerID" label="{i18n>columnCustomerID}" visibleInFilterBar="true">
+                        <fb:control>
+                            <Input id="inputCustomerID"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+
+                    <fb:FilterGroupItem groupName="companyName" name="companyName" label="{i18n>columnCompanyName}" visibleInFilterBar="true">
+                        <fb:control>
+                            <Input id="inputCompanyName"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+
+                    <fb:FilterGroupItem groupName="city" name="city" label="{i18n>columnCity}" visibleInFilterBar="true">
+                        <fb:control>
+                            <Input id="inputCity"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+
+                    <fb:FilterGroupItem groupName="fax" name="fax" label="{i18n>columnFax}" visibleInFilterBar="true">
+                        <fb:control>
+                            <Input id="inputFax"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+
+            <Table id="customersTable" items="{path: 'customersTableModel>/results'}" mode="SingleSelectLeft" selectionChange="onSelectionChange">
+                <columns>
+                    <Column><Text text="{i18n>columnCustomerID}"/></Column>
+                    <Column><Text text="{i18n>columnCompanyName}"/></Column>
+                    <Column><Text text="{i18n>columnCity}"/></Column>
+                    <Column><Text text="{i18n>columnFax}"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{customersTableModel>CustomerID}"/>
+                            <Text text="{customersTableModel>CompanyName}"/>
+                            <Text text="{customersTableModel>City}"/>
+                            <Text text="{customersTableModel>Fax}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table> 
+        </content>
+        <footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="{i18n>btnCustomerDetails}" press="onPressViewDetails"/>
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
+

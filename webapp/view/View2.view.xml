@@ -1,0 +1,93 @@
+<mvc:View controllerName="sap.btp.viewcustomerorders.controller.View2"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <HBox class="sapUiMediumMarginTop sapUiLargeMarginBottom" justifyContent="SpaceAround">
+                <HBox>
+                    <Label text="{i18n>columnContactName}: " class="sapUiSmallMarginEnd"/>
+                    <Text text="{customerDetailsModel>/ContactName}"/>
+                </HBox>
+
+                <HBox>
+                    <Label text="{i18n>columnContactTitle}: " class="sapUiSmallMarginEnd"/>
+                    <Text text="{customerDetailsModel>/ContactTitle}"/>
+                </HBox>
+
+                <HBox>
+                    <Label text="{i18n>columnAddress}: " class="sapUiSmallMarginEnd"/>
+                    <Text text="{customerDetailsModel>/Address}"/>
+                </HBox>
+
+                <HBox>
+                    <Label text="{i18n>columnPostalCode}: " class="sapUiSmallMarginEnd"/>
+                    <Text text="{customerDetailsModel>/PostalCode}"/> 
+                </HBox>
+            </HBox>
+
+            <Table id="customerOrdersTable" items="{path: 'customerOrdersModel>/results'}">
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <ToolbarSpacer></ToolbarSpacer>
+                        <Button text="{i18n>exportButton}" press="onExport" type="Emphasized"></Button>
+                    </OverflowToolbar>
+                </headerToolbar>
+
+                <columns>
+                    <Column>
+                        <HBox>
+                            <Text text="{i18n>columnOrderID}"/>
+                            <Button icon="sap-icon://sort" press="onSortOrderID" type="Transparent"/>
+                        </HBox>
+                    </Column>
+                    <Column><Text text="{i18n>columnShipCity}"/></Column>
+                    <Column>
+                        <HBox>
+                            <Text text="{i18n>columnOrderDate}"/>
+                            <Button icon="sap-icon://sort" press="onSortOrderDate" type="Transparent"/>
+                        </HBox>
+                    </Column>
+                    <Column>
+                        <HBox>
+                            <Text text="{i18n>columnShippedDate}"/>
+                            <Button icon="sap-icon://sort" press="onSortShippedDate" type="Transparent"/>
+                        </HBox>
+                    </Column>
+                    <Column>
+                        <HBox>
+                            <Text text="{i18n>columnRequiredDate}"/>
+                            <Button icon="sap-icon://sort" press="onSortRequiredDate" type="Transparent"/>
+                        </HBox>
+                    </Column>
+                    <Column><Text text="{i18n>columnCustomerID}"/></Column>
+                    <Column><Text text="{i18n>columnCompanyName}"/></Column>
+                    <Column><Text text="{i18n>columnCountry}"/></Column>
+                    <Column><Text text="{i18n>columnDeliveryStatus}"/></Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{customerOrdersModel>OrderID}"/>
+                            <Text text="{customerOrdersModel>ShipCity}"/>
+                            <Text text="{path: 'customerOrdersModel>OrderDate', formatter: '.dateFormatter.formatDate'}"/>
+                            <Text text="{path: 'customerOrdersModel>ShippedDate', formatter: '.dateFormatter.formatDate'}"/>
+                            <Text text="{path: 'customerOrdersModel>RequiredDate', formatter: '.dateFormatter.formatDate'}"/>
+                            <Text text="{customerOrdersModel>CustomerID}"/>
+                            <Text text="{customerOrdersModel>CompanyName}"/>
+                            <Text text="{customerOrdersModel>Country}"/>
+                            <ObjectStatus text="{customerOrdersModel>DeliveryStatus}" state="{customerOrdersModel>DeliveryStatusState}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
+
+<!--
+    devi sortare le colonne data ordine, data spedizione, data richiesta in ordine di data maggiore e minore 
+
+    fai i>18n per la lingua inglese. devi creare un file apparte.
+-->
